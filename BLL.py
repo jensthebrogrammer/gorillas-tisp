@@ -13,14 +13,11 @@ def make_file(file_name):
 def search_for(zoek, file):     # kan dingen zoeken in een bestand
     bestand = open(file, "r")
 
-    inhoud = bestand.readline().rstrip("\n")        # leest de eerste lijn en telt omhoog
-
-    while inhoud != "":     # zolang de inhoud niet leeg is
-        if inhoud == zoek:                  # als de inhoud is wat je zoekt
+    for line in bestand:     # zolang de inhoud niet leeg is
+        temp = line.rstrip("\n")
+        if temp == zoek:                  # als de inhoud is wat je zoekt
             antwoord = bestand.readline().rstrip("\n")  # pakt de info op de volgende lijn
             return antwoord
-        else:
-            inhoud = bestand.readline().rstrip("\n")    # leest verder
 
     return None
 
@@ -91,12 +88,12 @@ class body:                     # lichamen in pygame zoals de gorillas
     def make_hitbox(self, file):
         hitbox_sizefactor = int(search_for(self.name + "_hitbox_size_factor", file))*0.01
 
-        hoogte = self.hoogte
-        breedte = self.breedte
+        hoogte = 10
+        breedte = 10
 
         surface = pygame.Surface((breedte, hoogte))
         self.hitbox_surf = pygame.transform.scale_by(surface, hitbox_sizefactor)
-        self.hitbox_rect = self.hitbox_surf.get_rect(center=(int(self.x_cor), int(self.y_cor)))
+        self.hitbox_rect = self.hitbox_surf.get_rect(midbottom=(int(self.x_cor), int(self.y_cor)))
 
 
 
@@ -228,18 +225,23 @@ def trow_(world, turn, speed, alpha):
         hoogte = world.screen.hoogte        # hoogte van het scherm
         y_ = hoogte - y - (hoogte - y_gor)      # omgevormde y voor het coördinaten systeem
         surface = world.banana.surf
-        rectangle = surface.get_rect(center=(x, y_))    # hitbox van de banaan
+        cords = (x, y_)
+        rectangle = surface.get_rect(center=cords)    # hitbox van de banaan
 
-        blit_projectile(world, surface, rectangle)
+        temp_surf = world.banana.hitbox_surf
+        world.banana.hitbox_rect = world.banana.hitbox_surf.get_rect(center=cords)
+        temp_rect = world.banana.hitbox_rect
+
+        blit_projectile(world, surface, rectangle, cords)
 
         pygame.display.update()  # om je scherm te updaten
         clock = pygame.time.Clock()  # om de framerate in te stellen
         clock.tick(60)  # fps
 
-        if rectangle.colliderect(world.gorilla1.hitbox_rect) == 1:
+        if world.banana.hitbox_rect.colliderect(world.gorilla1.hitbox_rect) == 1:
             colision = "p1"
 
-        elif rectangle.colliderect(world.gorilla2.hitbox_rect) == 1:
+        elif world.banana.hitbox_rect.colliderect(world.gorilla2.hitbox_rect) == 1:
             colision = "p2"
         else:
             colision = ""       # als er niks is
