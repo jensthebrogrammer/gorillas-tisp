@@ -51,6 +51,7 @@ def main():
 
     gorilla1.make_hitbox(settings_file)
     gorilla2.make_hitbox(settings_file)
+    banana.make_hitbox(settings_file)
 
     pygame.display.set_caption('gorillas')  # de naam van je game
     clock = pygame.time.Clock()     # om de framerate in te stellen
@@ -64,7 +65,7 @@ def main():
                 quit()      # om je programma stop te zetten
 
         screen_pygame.fill(search_for("screen_collor", settings_file))  # om het scherm te updaten
-        render_all(world, players_, gravity)     # zet alles op het scherm
+        render_all(world, players_, settings_file)     # zet alles op het scherm
 
         if a_angle == True:     # ik gebruik booleans om te weten wat wanneer moet gebeuren
             info = ask_angle(world, turn)   # neemt keyboard inputs
