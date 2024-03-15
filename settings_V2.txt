@@ -17,7 +17,10 @@ gorilla1_size_factor
 1
 /
 gorilla1_hitbox_size_factor
-5
+10
+/
+gorilla1_lives
+3
 }
 }
 gorilla2_hoogte
@@ -39,7 +42,10 @@ gorilla2_size_factor
 1
 /
 gorilla2_hitbox_size_factor
-4
+10
+/
+gorilla2_lives
+3
 }
 }
 banana_hoogte
@@ -60,6 +66,8 @@ Yellow
 banana_size_factor
 2
 /
+banana_hitbox_size_factor
+30
 }
 }
 screen_hoogte
