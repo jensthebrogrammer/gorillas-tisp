@@ -2,12 +2,10 @@ import pygame, time
 
 pygame.init()
 
-def render_all(world, players, grav):
+def render_all(world, players, settings):
     world.screen_pygame.fill(search_for("screen_collor", "settings_V2.txt"))
     text(players, world.screen_pygame, world.screen.breedte)  # zet de namen van de spelers op het scherm
     render_buildings(world.buildings, world.screen_pygame)  # zet alle buildings op het scherm
-    world.screen_pygame.blit(world.gorilla1.hitbox_surf, world.gorilla1.hitbox_rect)
-    world.screen_pygame.blit(world.gorilla2.hitbox_surf, world.gorilla2.hitbox_rect)
     world.screen_pygame.blit(world.gorilla1.surf, world.gorilla1.pygamer("rect")) # gorilla 1
     world.screen_pygame.blit(world.gorilla2.surf, world.gorilla2.pygamer("rect"))
     world.screen_pygame.blit(world.clouds.surf, world.clouds.rect)
@@ -99,16 +97,16 @@ def text(players, screen, breedte):     # zet de namen van de spelers op het sch
 def search_for(zoek, file):     # kan dingen zoeken in een bestand
     bestand = open(file, "r")
 
-    inhoud = bestand.readline().rstrip("\n")        # leest de eerste lijn en telt omhoog
-
-    while inhoud != "":     # zolang de inhoud niet leeg is
-        if inhoud == zoek:                  # als de inhoud is wat je zoekt
+    for line in bestand:     # zolang de inhoud niet leeg is
+        temp = line.rstrip("\n")
+        if temp == zoek:                  # als de inhoud is wat je zoekt
             antwoord = bestand.readline().rstrip("\n")  # pakt de info op de volgende lijn
             return antwoord
-        else:
-            inhoud = bestand.readline().rstrip("\n")    # leest verder
+
+    return None
 
     bestand.close()  # sluit het bestand terug
+
 
 
 stringer = ""   # voor de get_letters functie
@@ -154,7 +152,7 @@ def PL_ask_speed(world, player):
     blit_text(world, "give speed: ", location, "red")
 
 
-def blit_projectile(world, surf, rect):
+def blit_projectile(world, surf, rect, cords):
     render_all(world, ["", ""], world.gravity)
     world.screen_pygame.blit(surf, rect)        # blit de banaan
 
