@@ -6,3 +6,4 @@ ideas:
 3) instead of an L display hearts
 4) add items to the game
 5) add an input validation
+6) safely remove some useless settings
