@@ -1,6 +1,6 @@
 print("gorillas module geactiveert")
 import pygame, random, time, math
-from py_files.presentation_layer import *
+from presentation_layer import *
 pygame.init() # om pygame te activeren
 
 def make_file(file_name):
@@ -150,6 +150,14 @@ def ask_angle(world, player):
         info = get_letters((world.screen.breedte - 17, 43), world)
         contin, letters = info[0], info[1]
 
+    # input validatie
+    if contin == True:
+        for char in letters:
+            try:
+                int(char)
+            except:
+                contin = False
+
     return [contin, letters]
 
 
@@ -163,6 +171,14 @@ def ask_speed(world, player):
     elif player == 2:
         info = get_letters((world.screen.breedte - 17, 43), world)
         contin, letters = info[0], info[1]
+
+    # input validatie
+    if contin == True:
+        for char in letters:
+            try:
+                int(char)
+            except:
+                contin = False
 
     return [contin, letters]
 
