@@ -1,18 +1,3 @@
-gorilla1_hoogte
-10
-
-gorilla1_breedte
-10
-
-gorilla1_x_cor
-15
-
-gorilla1_y_cor
-300
-
-gorilla1_collor
-White
-
 gorilla1_size_factor
 1
 
@@ -24,20 +9,6 @@ gorilla1_lives
 
 
 
-gorilla2_hoogte
-25
-
-gorilla2_breedte
-15
-
-gorilla2_x_cor
-300
-
-gorilla2_y_cor
-69
-
-gorilla2_collor
-White
 
 gorilla2_size_factor
 1
@@ -51,21 +22,6 @@ gorilla2_lives
 
 
 
-banana_hoogte
-10
-
-banana_breedte
-10
-
-banana_x_cor
-400
-
-banana_y_cor
-30
-
-banana_collor
-Yellow
-
 banana_size_factor
 2
 
@@ -76,10 +32,10 @@ banana_hitbox_size_factor
 
 
 screen_hoogte
-400
+500
 
 screen_breedte
-800
+900
 
 screen_collor
 lightblue
@@ -91,14 +47,15 @@ building_max_h
 100
 
 building_size
-100
+80
 
 building_collor
 Brown
 
+
+
 apart_from_eachother
 150
-
 
 
 

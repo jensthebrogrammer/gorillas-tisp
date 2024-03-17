@@ -31,10 +31,16 @@ class body:                     # lichamen in pygame zoals de gorillas
     def get_info_from(self, file):                  # haalt alle info uit de file
         bestand = open(file, "r")  # leest de file
 
-        self.hoogte = int(search_for(self.name + "_hoogte", file))
-        self.breedte = int(search_for(self.name + "_breedte", file))
-        self.x_cor = search_for(self.name + "_x_cor", file)
-        self.y_cor = search_for(self.name + "_y_cor", file)
+        hoogte = search_for(self.name + "_hoogte", file)
+        if hoogte != None:
+            self.hoogte = int(hoogte)
+
+        breedte = search_for(self.name + "_breedte", file)
+        if breedte != None:
+            self.breedte = int(breedte)
+
+        self.x_cor = 0
+        self.y_cor = 0
         self.collor = search_for(self.name + "_collor", file)
 
         lives = search_for(self.name + "_lives", file)
