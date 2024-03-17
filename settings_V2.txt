@@ -35,7 +35,7 @@ screen_hoogte
 500
 
 screen_breedte
-900
+800
 
 screen_collor
 lightblue
@@ -47,7 +47,7 @@ building_max_h
 100
 
 building_size
-80
+100
 
 building_collor
 Brown
