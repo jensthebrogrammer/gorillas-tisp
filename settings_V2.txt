@@ -23,6 +23,7 @@ gorilla1_lives
 3
 
 
+
 gorilla2_hoogte
 25
 
@@ -48,6 +49,8 @@ gorilla2_lives
 3
 
 
+
+
 banana_hoogte
 10
 
@@ -70,6 +73,8 @@ banana_hitbox_size_factor
 150
 
 
+
+
 screen_hoogte
 400
 
@@ -78,6 +83,7 @@ screen_breedte
 
 screen_collor
 lightblue
+
 
 
 
@@ -90,10 +96,9 @@ building_size
 building_collor
 Brown
 
-
-
 apart_from_eachother
 150
+
 
 
 
