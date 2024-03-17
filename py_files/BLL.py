@@ -250,9 +250,8 @@ def trow_(world, turn, speed, alpha):
         cords = (x, y_)
         rectangle = surface.get_rect(center=cords)    # hitbox van de banaan
 
-        temp_surf = world.banana.hitbox_surf
+        # laat de hitbox mee bewegen
         world.banana.hitbox_rect = world.banana.hitbox_surf.get_rect(center=cords)
-        temp_rect = world.banana.hitbox_rect
 
         blit_projectile(world, surface, rectangle, cords)
 
@@ -260,25 +259,31 @@ def trow_(world, turn, speed, alpha):
         clock = pygame.time.Clock()  # om de framerate in te stellen
         clock.tick(60)  # fps
 
-        if world.banana.hitbox_rect.colliderect(world.gorilla1.hitbox_rect) == 1:
+        look_for_hit(world, expected_colision)
+
+        
+
+
+def look_for_hit(world, expected):
+    if world.banana.hitbox_rect.colliderect(world.gorilla1.hitbox_rect) == 1:
             colision = "p1"
 
-        elif world.banana.hitbox_rect.colliderect(world.gorilla2.hitbox_rect) == 1:
-            colision = "p2"
-        else:
-            colision = ""       # als er niks is
+    elif world.banana.hitbox_rect.colliderect(world.gorilla2.hitbox_rect) == 1:
+        colision = "p2"
+    else:
+        colision = ""       # als er niks is
 
-        if expected_colision == colision:       # dit word gedaan omdat je anders jezelf kan raken
-            if colision == "p2":
-                world.gorilla2.lives -= 1
-            elif colision == "p1":
-                world.gorilla1.lives -= 1
-            
-            y = -51 # om de while loop te stoppen
-            world.gravity = random.randint(2, 20)
+    if expected == colision:       # dit word gedaan omdat je anders jezelf kan raken
+        if colision == "p2":
+            world.gorilla2.lives -= 1
+        elif colision == "p1":
+            world.gorilla1.lives -= 1
+        
+        y = -51 # om de while loop te stoppen
+        world.gravity = random.randint(2, 20)
 
-            if ((world.gorilla1.lives == 0) or
-                (world.gorilla2.lives == 0)):
-                winner(world, colision)
-                pygame.quit()  # om pygame te deactiveren
-                quit()  # om je programma stop te zetten                 
+        if ((world.gorilla1.lives == 0) or
+            (world.gorilla2.lives == 0)):
+            winner(world, colision)
+            pygame.quit()  # om pygame te deactiveren
+            quit()  # om je programma stop te zetten
