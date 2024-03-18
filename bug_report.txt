@@ -1,3 +1,2 @@
 1) sometimes the gorillas do not place correctly
-2) input function is sometimes to slow
-3) op hogere snelheden doet de banaan iets raars
+2) op hogere snelheden doet de banaan iets raars (soms)
