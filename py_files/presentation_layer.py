@@ -114,7 +114,7 @@ def get_letters(location, screen):
     global stringer
     contin = False
     new = ""
-    for i in range(10): # om langer te blijven zoeken naar keyboard inputs
+    for i in range(20): # om langer te blijven zoeken naar keyboard inputs
         time.sleep(0.01)    # om er voor te zorgen dat we niet te snel gaan (dit zorgt wel dat je de window niet kan sluiten)
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
