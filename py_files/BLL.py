@@ -259,7 +259,8 @@ def trow_(world, turn, speed, alpha):
         clock = pygame.time.Clock()  # om de framerate in te stellen
         clock.tick(60)  # fps
 
-        look_for_hit(world, expected_colision)
+        if look_for_hit(world, expected_colision):
+            break
 
         
 
@@ -279,7 +280,6 @@ def look_for_hit(world, expected):
         elif colision == "p1":
             world.gorilla1.lives -= 1
         
-        y = -51 # om de while loop te stoppen
         world.gravity = random.randint(2, 20)
 
         if ((world.gorilla1.lives == 0) or
@@ -287,3 +287,5 @@ def look_for_hit(world, expected):
             winner(world, colision)
             pygame.quit()  # om pygame te deactiveren
             quit()  # om je programma stop te zetten
+        
+        return True
