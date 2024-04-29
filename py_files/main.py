@@ -4,7 +4,7 @@ pygame.init()  # om pygame te activeren
 
 
 def main():
-    settings_file = "settings_V2.txt"   # van dit bestand haal ik al mijn info
+    settings_file = 'C:\\Users\\35257\\OneDrive - Technisch instituut Sint-Paulus\Documenten\\vs_code\\gorillas\\gorillas-tisp\\settings_V2.txt'   # van dit bestand haal ik al mijn info
     banaan_image_file = "banaan_transparant.png"        # (488, 250)
     gorilla_image_file = "donkey_kong_transparant.png"  # (488, 327)
     clouds_image_file = "wolken_transparant.png"
@@ -12,6 +12,7 @@ def main():
     # setup
     turn = 1
     gravity = 9.81
+    wind = 0
     a_angle, a_speed, trow = True, False, False
 
     # alle lichamen maken
@@ -42,7 +43,7 @@ def main():
 
     # de lichamen opslagen in een classe
     world = map(gorilla1, gorilla2, banana, screen, screen_pygame
-                , buildings, clouds, gravity)
+                , buildings, clouds, gravity, wind)
 
     gorilla1.get_random_x(screen, 1, settings_file)     # bepaalt en random x waarde
     gorilla2.get_random_x(screen, 2, settings_file)
