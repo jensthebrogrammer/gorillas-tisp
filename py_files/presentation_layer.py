@@ -3,13 +3,14 @@ import pygame, time
 pygame.init()
 
 def render_all(world, players, settings):
-    world.screen_pygame.fill(search_for("screen_collor", "settings_V2.txt"))
+    world.screen_pygame.fill(search_for("screen_collor", settings))
     text(players, world.screen_pygame, world.screen.breedte)  # zet de namen van de spelers op het scherm
     render_buildings(world.buildings, world.screen_pygame)  # zet alle buildings op het scherm
     world.screen_pygame.blit(world.gorilla1.surf, world.gorilla1.pygamer("rect")) # gorilla 1
     world.screen_pygame.blit(world.gorilla2.surf, world.gorilla2.pygamer("rect"))
     world.screen_pygame.blit(world.clouds.surf, world.clouds.rect)
     display_grav(world)
+    display_wind(world)
     display_lives(world, 1, world.gorilla1.lives)
     display_lives(world, 2, world.gorilla2.lives)
 
@@ -96,7 +97,6 @@ def text(players, screen, breedte):     # zet de namen van de spelers op het sch
 
 def search_for(zoek, file):     # kan dingen zoeken in een bestand
     bestand = open(file, "r")
-
     for line in bestand:     # zolang de inhoud niet leeg is
         temp = line.rstrip("\n")
         if temp == zoek:                  # als de inhoud is wat je zoekt
@@ -153,7 +153,7 @@ def PL_ask_speed(world, player):
 
 
 def blit_projectile(world, surf, rect, cords):
-    render_all(world, ["", ""], world.gravity)
+    render_all(world, ["", ""], "settings_V2.txt")
     world.screen_pygame.blit(surf, rect)        # blit de banaan
 
 
@@ -180,3 +180,9 @@ def display_lives(world, gorilla, lives):
 
     message_lives = "L : " + str(lives)
     blit_text(world, message_lives, location, "Red")
+
+
+def display_wind(world):
+    g_message = "wind : " + str(world.wind)
+    location = (world.screen.breedte//2, 35)
+    blit_text(world, g_message, location, "Red")
