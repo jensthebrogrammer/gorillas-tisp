@@ -3,7 +3,9 @@ import pygame, random, time, math
 from presentation_layer import *
 pygame.init() # om pygame te activeren
 
-def make_file(file_name):
+# hello:)
+
+def make_file(file_name): 
     text = ""   # dit is de text die ik wil toevoegen
     bestand = open(file_name, "w") # maakt een file aan
     bestand.write(text) # zet de text in het bestand
@@ -134,7 +136,7 @@ class city:
 
 class map:      # een classe om al je lichamen bij te houden
     def __init__(self, gorilla1, gorilla2, banana, screen, 
-                 screen_pygame, buildings, clouds, gravity):
+                 screen_pygame, buildings, clouds, gravity, wind):
         self.gorilla1 = gorilla1
         self.gorilla2 = gorilla2
         self.banana = banana
@@ -143,6 +145,7 @@ class map:      # een classe om al je lichamen bij te houden
         self.buildings = buildings
         self.clouds = clouds
         self.gravity = gravity
+        self.wind = wind
 
 
 def ask_angle(world, player):
@@ -234,12 +237,12 @@ def trow_(world, turn, speed, alpha):
         x_gor = world.gorilla2.x_cor
         y_gor = world.gorilla2.y_cor
 
-    y = (speed * math.sin(alpha) * t - 1 / 2 * world.gravity * t ** 2)       # berekent y één keer voor de while loop te starten
+    y = ((speed - world.wind) * math.sin(alpha) * t - 1 / 2 * world.gravity * t ** 2)       # berekent y één keer voor de while loop te starten
 
     while y >= -50:     # -50 omdat dat de max hoogte van de gebouwen is
         time.sleep(0)
-        x = x_gor + (speed * math.cos(alpha) * t)
-        y = (speed * math.sin(alpha) * t - 1 / 2 * world.gravity * t ** 2)
+        x = x_gor + ((speed - world.wind) * math.cos(alpha) * t)
+        y = ((speed - world.wind) * math.sin(alpha) * t - 1 / 2 * world.gravity * t ** 2)
         x = round(x)
         y = round(y)
         t += 0.1        # de tijd gaat vooruit
@@ -281,6 +284,7 @@ def look_for_hit(world, expected):
             world.gorilla1.lives -= 1
         
         world.gravity = random.randint(2, 20)
+        world.wind = random.randint(0, 70)
 
         if ((world.gorilla1.lives == 0) or
             (world.gorilla2.lives == 0)):
