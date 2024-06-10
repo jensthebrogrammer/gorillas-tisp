@@ -209,13 +209,17 @@ def get_letters(location, world):
                     letter = chr(event.key)
                     stringer += letter
                 
-                elif event.key == pygame.K_SPACE:
+                elif event.key == pygame.K_KP_ENTER or event.key == 13:
                     contin = True
                     new = stringer
                     stringer = ""
 
                 elif event.key == pygame.K_DELETE:
                     stringer = ""
+
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()   # om pygame te deactiveren
+                    quit()      # om je programma stop te zetten
 
     blit_text(world, stringer, location, "red")
 
