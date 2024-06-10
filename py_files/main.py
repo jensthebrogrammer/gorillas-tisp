@@ -4,7 +4,7 @@ pygame.init()  # om pygame te activeren
 
 
 def main():
-    settings_file = 'C:\\Users\\35257\\OneDrive - Technisch instituut Sint-Paulus\Documenten\\vs_code\\gorillas\\gorillas-tisp\\settings_V2.txt'   # van dit bestand haal ik al mijn info
+    settings_file = 'settings_V2.txt'   # van dit bestand haal ik al mijn info
     banaan_image_file = "banaan_transparant.png"        # (488, 250)
     gorilla_image_file = "donkey_kong_transparant.png"  # (488, 327)
     clouds_image_file = "wolken_transparant.png"
@@ -72,14 +72,24 @@ def main():
             info = ask_angle(world, turn)   # neemt keyboard inputs
             a_speed, angle = info[0], info[1]       # info[0] is een string
 
-            # input validatie
-            if a_speed == True and int(angle) < 15:
-                a_speed, angle = False, 0
+            try:
+                # input validatie
+                if a_speed == True and int(angle) < 15:
+                    a_speed, angle = False, 0
+            except:
+                a_speed = False
 
         if a_speed == True:
             info = ask_speed(world, turn)
             trow, speed = info[0], info[1]
             a_angle = False
+
+            if trow == True:
+                try:
+                    int(speed)
+                except:
+                    trow = False
+
             
 
         if trow == True:
