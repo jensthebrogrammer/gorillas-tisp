@@ -126,13 +126,14 @@ def get_letters(location, screen):
                     letter = chr(event.key)
                     stringer += letter
                 
-                elif event.key == pygame.K_SPACE:
+                elif event.key == pygame.K_KP_ENTER or event.key == 13:
                     contin = True
                     new = stringer
                     stringer = ""
 
                 elif event.key == pygame.K_DELETE:
                     stringer = ""
+
 
 
     font = pygame.font.Font('freesansbold.ttf', 20)
